@@ -3,12 +3,12 @@ let slider = document.querySelector("#slider");
 let volume_display = document.querySelector("#volume");
 
 window.addEventListener("load", function() {
-	volume_display.innerHTML = "100%";
 });
 
 document.querySelector("#play").addEventListener("click", function() {
 	video.play();
 	console.log("Play Video");
+	volume_display.innerHTML = String(video.volume * 100) + "%";
 });
 
 document.querySelector("#pause").addEventListener("click", function() {
@@ -50,6 +50,8 @@ document.querySelector("#mute").addEventListener("click", function() {
 
 slider.addEventListener("change", function(){
 	volume_display.innerHTML = String(slider.value) + "%";
+	video.volume = slider.value / 100;
+	console.log(video.volume);
 })
 
 document.querySelector("#vintage").addEventListener("click", function(){
