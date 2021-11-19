@@ -1,8 +1,9 @@
 let video = document.querySelector("#player1");
 let slider = document.querySelector("#slider");
+let volume_display = document.querySelector("#volume");
 
 window.addEventListener("load", function() {
-	console.log("Good job opening the window");
+	volume_display.innerHTML = "100%";
 });
 
 document.querySelector("#play").addEventListener("click", function() {
@@ -16,15 +17,23 @@ document.querySelector("#pause").addEventListener("click", function() {
 })
 
 document.querySelector("#slower").addEventListener("click", function() {
-	console.log("Old video speed is " + video.playbackRate);
 	video.playbackRate = video.playbackRate / 1.05;
-	console.log("New video speed is " + video.playbackRate);
+	console.log("New speed is " + video.playbackRate);
 })
 
 document.querySelector("#faster").addEventListener("click", function() {
-	console.log("Old video speed is " + video.playbackRate);
 	video.playbackRate = video.playbackRate * 1.05;
-	console.log("New video speed is " + video.playbackRate);
+	console.log("New speed is " + video.playbackRate);
+})
+
+document.querySelector("#skip").addEventListener("click", function() {
+	console.log("Original location " + String(video.currentTime));
+	video.currentTime += 15;
+	if (video.currentTime === video.duration){
+		video.currentTime = 0;
+		console.log("Going back to beginning");
+	}
+	console.log("New location " + String(video.currentTime));
 })
 
 document.querySelector("#mute").addEventListener("click", function() {
@@ -40,7 +49,7 @@ document.querySelector("#mute").addEventListener("click", function() {
 })
 
 slider.addEventListener("change", function(){
-	video.volume = slider.value / 100;
+	volume_display.innerHTML = String(slider.value) + "%";
 })
 
 document.querySelector("#vintage").addEventListener("click", function(){
