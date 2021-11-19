@@ -37,7 +37,7 @@ document.querySelector("#skip").addEventListener("click", function() {
 })
 
 document.querySelector("#mute").addEventListener("click", function() {
-	if (video.volume !== 0){
+	if (document.querySelector("#mute").innerHTML === "Mute"){
 		video.volume = 0
 		document.querySelector("#mute").innerHTML = "Unmute";
 	}
